@@ -1,4 +1,4 @@
-package main
+package go_logging
 //
 //import (
 //	"dhvan-go-logging-sdk/constants"

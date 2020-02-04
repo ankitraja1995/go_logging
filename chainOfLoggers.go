@@ -1,4 +1,4 @@
-package main
+package go_logging
 
 func GetChainOfLoggers() abstractLogger {
 	warn := &warn{}

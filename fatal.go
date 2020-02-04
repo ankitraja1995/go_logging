@@ -1,4 +1,4 @@
-package main
+package go_logging
 
 type fatal struct {
 	next  abstractLogger
