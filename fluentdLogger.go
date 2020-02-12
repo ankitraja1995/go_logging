@@ -121,8 +121,8 @@ func callLogrusFuncByName(logrusInterface *logrus.Logger, funcName string, param
 	myClassValue := reflect.ValueOf(logrusInterface)
 	m := myClassValue.MethodByName(funcName)
 	if !m.IsValid() {
-		fluentdPostError := FluentdPostError.Newf("Error: method not found-- %s for logger-- %v "+
-			"having params-- %v, data : %v", funcName, logrusInterface, params, params)
+		fluentdPostError := FluentdPostError.Newf("Error: method not found-- %s, for logger-- %v, "+
+			"having params-- %v", funcName, &logrusInterface, params)
 		InternalLoggerGlobal.Error(fluentdPostError)
 	} else {
 		in := make([]reflect.Value, len(params))
