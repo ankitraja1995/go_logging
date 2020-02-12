@@ -112,9 +112,9 @@ func GetLorusInstance(logFileConfig *LogFileConfig) *logrus.Logger {
 	return Log
 }
 
-func fileLogRouter(fileLogger *logrus.Logger, LogLevel string, data string) {
+func fileLogRouter(fileLogger *logrus.Logger, logLevel string, data string) {
 	t1 := fileLogger
-	callLogrusFuncByName(t1, LogLevel, data)
+	callLogrusFuncByName(t1, logLevel, data)
 }
 
 func callLogrusFuncByName(logrusInterface *logrus.Logger, funcName string, params ...interface{}) {
