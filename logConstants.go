@@ -1,4 +1,4 @@
 package go_logging
 
 const CommonKeyForJsonData = "data"
-const LogLevelForEvent = "Panic"
+const LogLevelForEvent = "Error"
