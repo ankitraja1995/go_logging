@@ -38,7 +38,7 @@ func (lc *LogConfig) GetLogger() *FluentdLogger {
 
 	logger, fluentDConnectionErr := fluent.New(fluent.Config{FluentPort: lc.FluentDPort, FluentHost: lc.FluentDHost, MaxRetry: lc.MaxRetry, MaxRetryWait: lc.MaxRetryWaitMillis})
 	if fluentDConnectionErr != nil {
-		fluentDConnectionErr = Wrapf(fluentDConnectionErr, "Error: could not create a new fluentd logger. Logging to file instead of fluentd.")
+		fluentDConnectionErr = Wrapf(fluentDConnectionErr, "\n Error: could not create a new fluentd logger. Logging to file instead of fluentd.")
 		InternalLoggerGlobal.Error(fluentDConnectionErr)
 	}
 	defer logger.Close()

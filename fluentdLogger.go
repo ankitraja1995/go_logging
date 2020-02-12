@@ -145,7 +145,7 @@ func inputArgsToMap(format string, args ...interface{}) map[string]string {
 func writeTofile(fluentdLogger *FluentdLogger, format string, logType LogType, isEvent bool) {
 	jsonData, jsonMarshallErr := json.Marshal(format)
 	if jsonMarshallErr != nil {
-		jsonMarshallErr = Wrapf(jsonMarshallErr, "Error: while marshalling-- %v  for logging into file", format)
+		jsonMarshallErr = Wrapf(jsonMarshallErr, "\n Error: while marshalling-- %v  for logging into file", format)
 		InternalLoggerGlobal.Error(jsonMarshallErr)
 	} else {
 		fileLogRouter(fluentdLogger.FileLogger, string(logType), string(jsonData))
