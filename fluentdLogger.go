@@ -66,7 +66,8 @@ func (fluentdLogger *FluentdLogger) asyncLog( tag string,  format string,  logTy
 	fluentdPostErr := loggerChain.Execute(fluentdLogger, logLevel, tag, data)
 
 	if fluentdPostErr != nil {
-		writeTofile(fluentdLogger, format, logType, false)
+		formattedString := fmt.Sprintf(format, args...)
+		writeTofile(fluentdLogger, formattedString, logType, false)
 	}
 }
 
@@ -134,20 +135,14 @@ func callLogrusFuncByName(logrusInterface *logrus.Logger, funcName string, param
 }
 
 func inputArgsToMap(format string, args ...interface{}) map[string]string {
-	formatted_string := fmt.Sprintf(format, args...)
+	formattedString := fmt.Sprintf(format, args...)
 	data := map[string]string{
-		CommonKeyForJsonData: formatted_string,
+		CommonKeyForJsonData: formattedString,
 	}
 
 	return data
 }
 
 func writeTofile(fluentdLogger *FluentdLogger, format string, logType LogType, isEvent bool) {
-	jsonData, jsonMarshallErr := json.Marshal(format)
-	if jsonMarshallErr != nil {
-		jsonMarshallErr = Wrapf(jsonMarshallErr, "\n Error: while marshalling-- %v  for logging into file", format)
-		InternalLoggerGlobal.Error(jsonMarshallErr)
-	} else {
-		fileLogRouter(fluentdLogger.FileLogger, string(logType), string(jsonData))
-	}
+	fileLogRouter(fluentdLogger.FileLogger, string(logType), format)
 }
