@@ -3,7 +3,7 @@ package main
 
 import (
 	"fmt"
-	"go_logging"
+	"github.com/ankitraja1995/go_logging"
 	"time"
 )
 
