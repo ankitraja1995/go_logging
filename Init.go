@@ -52,6 +52,11 @@ func (lc *LogConfig) GetLogger() *FluentdLogger {
 	}
 
 	fileLogger := GetLorusInstance(&logFileConfig)
+	fileLogger.SetFormatter(&logrus.JSONFormatter{
+		FieldMap: logrus.FieldMap{
+			logrus.FieldKeyMsg:  "data",
+		},
+			})
 	fluentdLogger = FluentdLogger{
 		FluentdConnection: logger,
 		InitLogDetails:    lc,
